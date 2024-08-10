@@ -3,49 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Movie Player</title>
+    <title>Simple Video Loader</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        #movie { width: 100%; max-width: 600px; }
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        #videoPlayer { width: 100%; max-width: 600px; }
         button { margin-top: 10px; }
     </style>
 </head>
 <body>
-    <h1>Upload and Watch Movie</h1>
-    <input type="file" id="movieFile" accept="video/*">
-    <button id="uploadButton">Upload Movie</button>
+    <h1>Upload and Watch Video</h1>
+    <input type="file" id="videoFile" accept="video/*">
+    <button id="loadButton" type="button">Load Video</button>
     <br>
-    <video id="movie" controls></video>
+    <video id="videoPlayer" controls></video>
     <br>
-    <button id="deleteButton">Delete Movie</button>
+    <button id="clearButton" type="button">Clear Video</button>
 
     <script>
-        // Function to handle movie upload
-        document.getElementById('uploadButton').addEventListener('click', function() {
-            const fileInput = document.getElementById('movieFile');
-            const movieElement = document.getElementById('movie');
+        document.getElementById('loadButton').addEventListener('click', function() {
+            const fileInput = document.getElementById('videoFile');
+            const videoPlayer = document.getElementById('videoPlayer');
             const file = fileInput.files[0];
+            
             if (file) {
                 const url = URL.createObjectURL(file);
-                movieElement.src = url;
-                movieElement.style.display = 'block'; // Show the video element
+                videoPlayer.src = url;
+                videoPlayer.style.display = 'block'; // Ensure video player is visible
             } else {
-                alert('Please select a video file.');
+                alert('Please select a video file to load.');
             }
         });
 
-        // Function to handle movie deletion
-        document.getElementById('deleteButton').addEventListener('click', function() {
-            const movieElement = document.getElementById('movie');
-            if (movieElement.src) {
-                URL.revokeObjectURL(movieElement.src); // Revoke the object URL
-                movieElement.src = '';
-                movieElement.style.display = 'none'; // Hide the video element
-                document.getElementById('movieFile').value = ''; // Clear file input
+        document.getElementById('clearButton').addEventListener('click', function() {
+            const videoPlayer = document.getElementById('videoPlayer');
+            if (videoPlayer.src) {
+                URL.revokeObjectURL(videoPlayer.src); // Revoke the object URL
+                videoPlayer.src = '';
+                videoPlayer.style.display = 'none'; // Hide the video player
+                document.getElementById('videoFile').value = ''; // Clear file input
             } else {
-                alert('No movie to delete.');
+                alert('No video to clear.');
             }
         });
     </script>
 </body>
 </html>
+
