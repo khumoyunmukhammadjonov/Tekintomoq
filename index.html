@@ -3,49 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Video Loader</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
-        #videoPlayer { width: 100%; max-width: 600px; }
-        button { margin-top: 10px; }
-    </style>
+    <title>Movie Upload and Watch</title>
 </head>
 <body>
-    <h1>Upload and Watch Video</h1>
-    <input type="file" id="videoFile" accept="video/*">
-    <button id="loadButton" type="button">Load Video</button>
-    <br>
-    <video id="videoPlayer" controls></video>
-    <br>
-    <button id="clearButton" type="button">Clear Video</button>
+    <h1>Movie Upload and Watch</h1>
+
+    <!-- Form for uploading movie -->
+    <input type="file" id="movieInput" accept="video/*">
+    <button onclick="uploadMovie()">Upload Movie</button>
+    <button onclick="deleteMovie()">Delete Movie</button>
+
+    <!-- Display current movie -->
+    <h2>Current Movie</h2>
+    <video id="moviePlayer" controls width="600" style="display:none;">
+        Your browser does not support the video tag.
+    </video>
 
     <script>
-        document.getElementById('loadButton').addEventListener('click', function() {
-            const fileInput = document.getElementById('videoFile');
-            const videoPlayer = document.getElementById('videoPlayer');
+        // Function to upload and display the movie
+        function uploadMovie() {
+            const fileInput = document.getElementById('movieInput');
+            const moviePlayer = document.getElementById('moviePlayer');
             const file = fileInput.files[0];
-            
+
             if (file) {
                 const url = URL.createObjectURL(file);
-                videoPlayer.src = url;
-                videoPlayer.style.display = 'block'; // Ensure video player is visible
+                moviePlayer.src = url;
+                moviePlayer.style.display = 'block';
+                fileInput.value = ''; // Clear file input
             } else {
-                alert('Please select a video file to load.');
+                alert('Please select a movie file.');
             }
-        });
+        }
 
-        document.getElementById('clearButton').addEventListener('click', function() {
-            const videoPlayer = document.getElementById('videoPlayer');
-            if (videoPlayer.src) {
-                URL.revokeObjectURL(videoPlayer.src); // Revoke the object URL
-                videoPlayer.src = '';
-                videoPlayer.style.display = 'none'; // Hide the video player
-                document.getElementById('videoFile').value = ''; // Clear file input
-            } else {
-                alert('No video to clear.');
-            }
-        });
+        // Function to delete the movie
+        function deleteMovie() {
+            const moviePlayer = document.getElementById('moviePlayer');
+            moviePlayer.src = '';
+            moviePlayer.style.display = 'none';
+        }
     </script>
 </body>
 </html>
-
