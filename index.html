@@ -3,45 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Upload and Watch</title>
+    <title>Tekintomoq</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #ff6347;
+        }
+        video {
+            width: 80%;
+            max-width: 800px;
+            margin-top: 20px;
+            border: 5px solid #333;
+            border-radius: 10px;
+        }
+
+    </style>
 </head>
 <body>
-    <h1>Movie Upload and Watch</h1>
+    <h1>Tekintomoq.uz</h1>
 
-    <!-- Form for uploading movie -->
-    <input type="file" id="movieInput" accept="video/*">
-    <button onclick="uploadMovie()">Upload Movie</button>
-    <button onclick="deleteMovie()">Delete Movie</button>
-
-    <!-- Display current movie -->
-    <h2>Current Movie</h2>
-    <video id="moviePlayer" controls width="600" style="display:none;">
+    <video controls>
+        <source src="https://raw.githubusercontent.com/khumoyunmukhammadjonov/Tekintomoq/main/movie/movie.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-
-    <script>
-        // Function to upload and display the movie
-        function uploadMovie() {
-            const fileInput = document.getElementById('movieInput');
-            const moviePlayer = document.getElementById('moviePlayer');
-            const file = fileInput.files[0];
-
-            if (file) {
-                const url = URL.createObjectURL(file);
-                moviePlayer.src = url;
-                moviePlayer.style.display = 'block';
-                fileInput.value = ''; // Clear file input
-            } else {
-                alert('Please select a movie file.');
-            }
-        }
-
-        // Function to delete the movie
-        function deleteMovie() {
-            const moviePlayer = document.getElementById('moviePlayer');
-            moviePlayer.src = '';
-            moviePlayer.style.display = 'none';
-        }
-    </script>
+    
 </body>
 </html>
