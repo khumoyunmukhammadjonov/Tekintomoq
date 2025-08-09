@@ -3,96 +3,68 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tekintamoq 🍿</title>
+  <title>Tekintamoq 🎬</title>
   <style>
     body {
-      background-color: #fffbf0;
       font-family: Arial, sans-serif;
+      background-color: #fff4d7;
       text-align: center;
-      color: #333;
       padding: 20px;
+      color: #333;
     }
     h1 {
-      font-size: 3rem;
-      color: #ff6f00;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-    input[type="password"] {
-      padding: 10px;
-      font-size: 1rem;
-      border: 2px solid #ff6f00;
-      border-radius: 10px;
-      outline: none;
-      width: 250px;
-      text-align: center;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 1rem;
-      background-color: #ff6f00;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      margin-top: 10px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #ff8f33;
-    }
-    .video-container {
-      margin-top: 30px;
-      display: none;
-    }
-    video {
-      max-width: 90%;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      font-size: 2.5em;
+      color: #ff6600;
     }
     .funny-text {
-      font-style: italic;
-      color: #888;
-      margin-top: 10px;
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+    #movie-container {
+      display: none;
+      margin-top: 20px;
+    }
+    iframe {
+      width: 90%;
+      height: 480px;
+      border: none;
+      border-radius: 10px;
+    }
+    .code-btn {
+      background-color: #ff9900;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .code-btn:hover {
+      background-color: #e68a00;
     }
   </style>
 </head>
 <body>
 
-  <h1>🍿 Tekintamoq</h1>
-  <p>Do‘stim, maxsus kodni kiriting va bepul kino ko‘r! 😎</p>
+  <h1>🍿 Tekintamoq 🍿</h1>
+  <p class="funny-text">Bu yerda faqat bitta kino bo'ladi... lekin bepul! 😎</p>
+  <button class="code-btn" onclick="askCode()">Kodni kiriting 🎟</button>
 
-  <input type="password" id="codeInput" placeholder="Maxsus kod...">
-  <br>
-  <button onclick="checkCode()">Ko‘rish</button>
-
-  <div class="video-container" id="videoContainer">
-    <h2>🎬 Bugungi Kino</h2>
-    <video id="moviePlayer" controls>
-      <!-- Change the src to your Google Drive direct link -->
-      <source src="https://drive.google.com/file/d/1-UefXbw_BMuAR65EfKRy2DGJyejKgZn-/view?usp=sharing">
-      Brauzeringiz video formatini qo‘llab-quvvatlamaydi.
-    </video>
-    <p class="funny-text">Tezroq ko‘r, ertaga bu yo‘q! 😂</p>
+  <div id="movie-container">
+    <p>Marhamat, tomosha qiling! 😉</p>
+    <iframe src="https://drive.google.com/file/d/1-UefXbw_BMuAR65EfKRy2DGJyejKgZn-/view?usp=sharing"></iframe>
   </div>
 
   <script>
-    // Change your secret code here
-    const secretCode = "paxta";
-
-    function checkCode() {
-      const input = document.getElementById('codeInput').value.trim();
-      if (input === secretCode) {
-        document.getElementById('videoContainer').style.display = 'block';
+    function askCode() {
+      let code = prompt("Maxfiy kodni kiriting:");
+      if (code === "tekintamoq") { 
+        document.getElementById("movie-container").style.display = "block";
       } else {
-        alert("Kod noto‘g‘ri! 🍉");
+        alert("Xato kod! ❌ Siz tekinchilikka hali tayyor emassiz 😏");
       }
     }
   </script>
 
 </body>
 </html>
-
-
